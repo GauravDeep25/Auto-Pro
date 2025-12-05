@@ -1,70 +1,139 @@
-# Getting Started with Create React App
+# Auto Pro - Garage Management System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Full-stack application for auto garage management with E-Rickshaw sales, spare parts inventory, and service booking.
+
+## Tech Stack
+
+- **Frontend**: React + Vite, TailwindCSS
+- **Backend**: Node.js + Express
+- **Database**: MongoDB Atlas (Cloud)
+- **Authentication**: JWT with HTTP-only cookies
+
+## Quick Start
+
+### 1. MongoDB Atlas Setup (One-time)
+
+1. Create free account at https://cloud.mongodb.com
+2. Create a free M0 cluster
+3. Create database user (Database Access)
+4. Whitelist your IP (Network Access) or use `0.0.0.0/0` for development
+5. Get connection string: **Connect → Drivers**
+
+### 2. Configure Environment
+
+Edit `backend/.env`:
+```env
+NODE_ENV=development
+PORT=5000
+MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/autopro?retryWrites=true&w=majority
+JWT_SECRET=autopro_secret_key_123!
+```
+
+### 3. Install & Run
+
+```bash
+# Install all dependencies
+npm run install:all
+
+# Start development servers
+npm run dev
+```
+
+The command automatically:
+- Connects to MongoDB Atlas
+- Seeds the database (first run)
+- Starts backend (port 5000)
+- Starts frontend (port 3000/3001)
+
+## Access
+
+- **Frontend**: http://localhost:3001
+- **Backend API**: http://localhost:5000
+
+## Default Credentials
+
+| Email | Password | Role |
+|-------|----------|------|
+| gauravdeepgd12007@gmail.com | 123456 | Admin |
+| admin@autopro.com | 123456 | Admin |
+| rajesh@example.com | 123456 | Customer |
+
+## Features
+
+✅ E-Rickshaw sales catalog  
+✅ Spare parts inventory  
+✅ Service appointment booking  
+✅ User authentication  
+✅ Admin dashboard  
+✅ Dark mode theme toggle  
+✅ Fully mobile responsive  
+
+## Project Structure
+
+```
+auto-pro/
+├── backend/
+│   ├── config/        # Database connection
+│   ├── controllers/   # Route handlers
+│   ├── models/        # MongoDB schemas
+│   ├── routes/        # API endpoints
+│   ├── data/          # Seed data
+│   ├── middleware/    # Auth middleware
+│   └── .env           # Environment variables
+├── frontend/
+│   └── src/
+│       ├── components/  # Reusable UI components
+│       ├── pages/       # Page components
+│       ├── context/     # React context (Auth)
+│       └── hooks/       # Custom hooks
+└── package.json       # Root scripts
+```
 
 ## Available Scripts
 
-In the project directory, you can run:
+```bash
+# Development
+npm run dev              # Start both servers
+npm run dev:backend      # Backend only
+npm run dev:frontend     # Frontend only
 
-### `npm start`
+# Database
+cd backend && npm run seed          # Reseed database
+cd backend && npm run seed:destroy  # Clear database
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Production
+npm start               # Build and serve production
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## MongoDB Atlas Management
 
-### `npm test`
+**View Data:**
+1. Go to Atlas dashboard
+2. Browse Collections
+3. Select `autopro` database
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Backup:** Atlas provides automatic backups on free tier
 
-### `npm run build`
+## Mobile Responsive
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Fully optimized for:
+- 📱 Mobile phones (375px+)
+- 📱 Tablets (768px+)
+- 💻 Desktops (1024px+)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Troubleshooting
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**Can't connect to database:**
+- Verify Atlas connection string in `.env`
+- Check IP whitelist in Atlas
+- Ensure cluster is active (not paused)
 
-### `npm run eject`
+**Seeding fails:**
+```bash
+cd backend
+node seeder.js
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Port conflicts:**
+- Backend: Change PORT in `backend/.env`
+- Frontend: Vite auto-increments if 3000 is taken

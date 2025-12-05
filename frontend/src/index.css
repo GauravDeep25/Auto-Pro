@@ -1,0 +1,283 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles for the entire application */
+html {
+    background-color: white;
+}
+
+html.dark {
+    background-color: black;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    scroll-behavior: smooth;
+    /* Ensure height is set correctly for full-screen apps */
+    min-height: 100vh;
+    background-color: inherit;
+}
+
+/* Smooth Animation Utilities */
+@layer utilities {
+    .fade-in {
+        animation: fadeIn 0.6s ease-in;
+    }
+
+    .fade-in-up {
+        animation: fadeInUp 0.8s ease-out;
+    }
+
+    .fade-in-down {
+        animation: fadeInDown 0.8s ease-out;
+    }
+
+    .slide-in-left {
+        animation: slideInLeft 0.7s ease-out;
+    }
+
+    .slide-in-right {
+        animation: slideInRight 0.7s ease-out;
+    }
+
+    .scale-in {
+        animation: scaleIn 0.5s ease-out;
+    }
+
+    .stagger-1 {
+        animation-delay: 0.1s;
+    }
+
+    .stagger-2 {
+        animation-delay: 0.2s;
+    }
+
+    .stagger-3 {
+        animation-delay: 0.3s;
+    }
+
+    .stagger-4 {
+        animation-delay: 0.4s;
+    }
+
+    .stagger-5 {
+        animation-delay: 0.5s;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideInFromTop {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+        max-height: 0;
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        max-height: 500px;
+    }
+}
+
+@keyframes slideOutToTop {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+        max-height: 500px;
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+        max-height: 0;
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Mobile Menu Animations */
+.mobile-menu-enter {
+    animation: slideInFromTop 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    overflow: hidden;
+}
+
+.mobile-menu-exit {
+    animation: slideOutToTop 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    overflow: hidden;
+}
+
+/* Loading Skeleton */
+.skeleton {
+    @apply bg-gradient-to-r from-neutral-200 via-neutral-300 to-neutral-200 dark:from-neutral-800 dark:via-neutral-700 dark:to-neutral-800;
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite linear;
+}
+
+.pulse-animation {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.bounce-icon {
+    animation: bounce 0.5s ease;
+}
+
+/* --- Login Page Component Styles --- */
+
+@layer components {
+    .login-page-container {
+        @apply flex items-center justify-center min-h-[calc(100vh-80px)] p-4 bg-neutral-50 dark:bg-black transition-colors duration-300;
+    }
+
+    .auth-card {
+        @apply w-full max-w-md bg-white dark:bg-neutral-900 shadow-2xl dark:shadow-neutral-950/50 rounded-xl p-8 transition-colors duration-300 border border-neutral-100 dark:border-neutral-800;
+    }
+
+    .auth-toggle-buttons {
+        @apply flex justify-center mb-6;
+    }
+
+    .auth-toggle-btn {
+        @apply py-2 px-6 text-sm font-semibold transition-all;
+    }
+
+    .auth-toggle-btn.active {
+        @apply bg-orange-600 text-white shadow-md shadow-orange-600/30 rounded-lg;
+    }
+
+    .auth-toggle-btn:not(.active) {
+        @apply bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 rounded-lg;
+    }
+
+    .auth-title {
+        @apply text-3xl font-bold text-center text-neutral-800 dark:text-white mb-8;
+    }
+
+    .auth-error-message {
+        @apply text-red-500 text-sm p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg;
+    }
+
+    .auth-submit-btn {
+        @apply w-full flex items-center justify-center py-3 mt-6 bg-orange-600 text-white font-semibold rounded-xl hover:bg-orange-700 transition-colors disabled:bg-neutral-500 disabled:cursor-not-allowed;
+    }
+
+    .auth-switch-text {
+        @apply text-center text-sm mt-6 text-neutral-500 dark:text-neutral-400;
+    }
+
+    .auth-switch-btn {
+        @apply text-orange-600 dark:text-orange-500 hover:underline font-medium;
+    }
+
+    /* Input Field Styling */
+    .input-icon {
+        @apply absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-neutral-400 dark:text-neutral-500;
+    }
+
+    .input-field {
+        @apply w-full pl-12 pr-4 py-3 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-xl text-neutral-800 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400 focus:outline-none focus:border-orange-500 transition-colors duration-200;
+    }
+
+    /* Form Input Field Styling (for appointment forms, etc) */
+    .input-field-form {
+        @apply w-full px-4 py-3 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-xl text-neutral-800 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400 focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200 dark:focus:ring-orange-900/50 transition-colors duration-200;
+    }
+
+    /* Contact Form Input Field Styling */
+    .input-field-contact {
+        @apply w-full px-4 py-3 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg text-neutral-800 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400 focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200 dark:focus:ring-orange-900/50 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+    }
+
+    /* Admin Dashboard Edit Input Field Styling */
+    .input-field-edit {
+        @apply px-3 py-2 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg text-sm text-neutral-800 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-200 dark:focus:ring-orange-900/50 transition-colors duration-200;
+    }
+}
