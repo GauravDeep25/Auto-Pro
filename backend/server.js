@@ -25,7 +25,12 @@ app.use(cookieParser()); // Cookie parser for Auth
 
 // CORS Configuration (Allowing frontend communication)
 app.use(cors({
-    origin: ['http://localhost:3000', 'http://localhost:3001'], // Frontend ports
+    origin: [
+        'http://localhost:3000', 
+        'http://localhost:3001',
+        'http://10.50.24.177:3000',
+        process.env.FRONTEND_URL || 'https://auto-pro-frontend.vercel.app'
+    ],
     credentials: true 
 }));
 

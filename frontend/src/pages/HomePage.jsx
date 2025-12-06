@@ -6,14 +6,14 @@ const HomePage = () => {
     return (
         <div className="pt-20 bg-neutral-50 dark:bg-black min-h-screen transition-colors duration-300">
             {/* Hero Section */}
-            <section className="relative py-20 lg:py-32 overflow-hidden border-b border-neutral-200 dark:border-neutral-900 fade-in">
+            <section className="relative py-20 lg:py-18 overflow-hidden border-b border-neutral-200 dark:border-neutral-900 fade-in">
                 <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
                     <div className="max-w-3xl">
-                        <span className="inline-block py-1 px-3 rounded-full bg-orange-50 dark:bg-neutral-900 border border-orange-100 dark:border-neutral-800 text-orange-700 dark:text-orange-500 text-xs font-semibold uppercase tracking-wider mb-6 fade-in-up">
-                            The Future of Transport
+                        <span className="inline-block py-3 px-3 rounded-full bg-orange-50 dark:bg-neutral-900 border border-orange-100 dark:border-neutral-800 text-orange-700 dark:text-orange-500 text-xs font-semibold uppercase tracking-wider mb-6 fade-in-up">
+                            Excellence in Two-Wheeler & E-Rickshaw Care
                         </span>
-                        <h1 className="text-5xl lg:text-7xl font-bold tracking-tight text-neutral-900 dark:text-white mb-6 leading-tight fade-in-up stagger-1">
-                            Your <span className="text-orange-600">Auto Pro</span> Garage for Two-Wheelers & E-Rickshaws.
+                        <h1 className="text-5xl lg:text-8xl font-bold tracking-tight text-neutral-900 dark:text-white mb-6 leading-tight fade-in-up stagger-1">
+                            Our <span className="text-orange-600">Auto Pro</span> Garage for Your Two-Wheelers & E-Rickshaws.
                         </h1>
                         <p className="text-lg text-neutral-600 dark:text-neutral-400 mb-10 leading-relaxed max-w-2xl fade-in-up stagger-2">
                             Expert service by professional, trained mechanics. Your reliable local partner for genuine spares, quick service, and E-Rickshaw sales -all performed on-site at our garage facility.

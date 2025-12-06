@@ -23,47 +23,37 @@ const useTheme = () => {
     const [isDark, setIsDark] = useState(() => {
         // Default to dark mode
         const storedTheme = sessionStorage.getItem('color-theme');
-        console.log('Initial stored theme:', storedTheme);
         
         // If there's no stored preference, set it to dark and add dark class immediately
         if (!storedTheme) {
             sessionStorage.setItem('color-theme', 'dark');
             document.documentElement.classList.add('dark');
-            console.log('No stored theme, defaulting to dark');
             return true;
         }
         
         const isDarkMode = storedTheme === 'dark';
-        console.log('Stored theme found, isDark:', isDarkMode);
         // Use stored preference
         return isDarkMode;
     });
 
     useEffect(() => {
-        console.log('Theme effect running, isDark:', isDark);
         // Apply the theme class on mount based on initial state
         if (isDark) {
             document.documentElement.classList.add('dark');
-            console.log('Applied dark class');
         } else {
             document.documentElement.classList.remove('dark');
-            console.log('Removed dark class');
         }
     }, [isDark]);
 
     const toggleTheme = () => {
-        console.log('Toggle theme clicked! Current isDark:', isDark);
         const newIsDark = !isDark;
         setIsDark(newIsDark);
-        console.log('Setting to:', newIsDark);
         if (newIsDark) {
             document.documentElement.classList.add('dark');
             sessionStorage.setItem('color-theme', 'dark');
-            console.log('Dark mode enabled');
         } else {
             document.documentElement.classList.remove('dark');
             sessionStorage.setItem('color-theme', 'light');
-            console.log('Light mode enabled');
         }
     };
 
