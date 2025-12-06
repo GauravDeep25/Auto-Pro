@@ -24,17 +24,10 @@ app.use(cookieParser());
 
 // CORS Configuration
 app.use(cors({
-    origin: [
-        'http://localhost:3000', 
-        'http://localhost:3001',
-        'http://10.50.24.177:3000',
-        'https://auto-pro-frontend.vercel.app',
-        'https://auto-pro-frontend-git-main-gauravdeepgd12007-1986s-projects.vercel.app',
-        'https://auto-w01jt3fca-gauravdeepgd12007-1986s-projects.vercel.app',
-        'https://auto-pro-iota.vercel.app',
-        'https://auto-pro-git-main-gauravdeepgd12007-1986s-projects.vercel.app',
-        process.env.FRONTEND_URL
-    ],
+    origin: (origin, callback) => {
+        // Allow all origins
+        callback(null, true);
+    },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']

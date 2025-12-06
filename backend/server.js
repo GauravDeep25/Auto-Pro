@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 // Import custom error handler utility (needed for asyncHandler in controllers)
-const asyncHandler = require('express-async-handler'); 
+const asyncHandler = require('express-async-handler');
 const connectDB = require('./config/db');
 
 // Import Routes
@@ -25,13 +25,11 @@ app.use(cookieParser()); // Cookie parser for Auth
 
 // CORS Configuration (Allowing frontend communication)
 app.use(cors({
-    origin: [
-        'http://localhost:3000', 
-        'http://localhost:3001',
-        'http://10.50.24.177:3000',
-        process.env.FRONTEND_URL || 'https://auto-pro-frontend.vercel.app'
-    ],
-    credentials: true 
+    origin: (origin, callback) => {
+        // Allow all origins
+        callback(null, true);
+    },
+    credentials: true
 }));
 
 // Basic Route for testing
