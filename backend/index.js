@@ -33,11 +33,19 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-// Middleware to check DB connection
-app.use((req, res, next) => {
+allowedHeaders: ['Content-Type', 'Authorization']
+
+// Middleware to check/establish DB connection
+app.use(async (req, res, next) => {
     const mongoose = require('mongoose');
+    // 0 = disconnected, 1 = connected, 2 = connecting, 3 = disconnecting
     if (mongoose.connection.readyState !== 1) {
-        return res.status(503).json({ message: 'Database not connected' });
+        try {
+            await connectDB();
+        } catch (error) {
+            console.error('Database connection failed in middleware:', error);
+            return res.status(503).json({ message: 'Database not connected' });
+        }
     }
     next();
 });
