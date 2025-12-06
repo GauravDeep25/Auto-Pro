@@ -33,8 +33,6 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-allowedHeaders: ['Content-Type', 'Authorization']
-
 // Middleware to check/establish DB connection
 app.use(async (req, res, next) => {
     const mongoose = require('mongoose');
