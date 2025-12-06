@@ -51,9 +51,14 @@ const authUser = asyncHandler(async (req, res) => {
     // 1. Find user by email
     const user = await User.findOne({ email });
 
+    if (!user) {
+        console.log(`Login failed: User not found for email ${email}`);
+    }
+
     // 2. Check password
     if (user && (await user.matchPassword(password))) {
         // 3. Generate JWT and set cookie
+        console.log(`Login successful for user: ${user.email}`);
         generateToken(res, user._id);
 
         res.json({
@@ -63,6 +68,7 @@ const authUser = asyncHandler(async (req, res) => {
             isAdmin: user.isAdmin,
         });
     } else {
+        console.log(`Login failed: Invalid password for user ${email}`);
         res.status(401); // Unauthorized
         throw new Error('Invalid email or password.');
     }
