@@ -32,6 +32,15 @@ app.use(cors({
     credentials: true
 }));
 
+// Middleware to check DB connection
+app.use((req, res, next) => {
+    const mongoose = require('mongoose');
+    if (mongoose.connection.readyState !== 1) {
+        return res.status(503).json({ message: 'Database not connected' });
+    }
+    next();
+});
+
 // Basic Route for testing
 app.get('/', (req, res) => {
     res.send('Auto Pro API is running...');
