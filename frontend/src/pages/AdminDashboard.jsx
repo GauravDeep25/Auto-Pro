@@ -111,23 +111,23 @@ const AdminDashboard = () => {
                 {/* Tab Navigation */}
                 <div className="border-b border-neutral-200 dark:border-neutral-800 mb-8">
                     <div className="flex space-x-4">
-                        <TabButton 
-                            Icon={Calendar} 
-                            name="Appointments" 
-                            active={activeTab === 'appointments'} 
-                            onClick={() => setActiveTab('appointments')} 
+                        <TabButton
+                            Icon={Calendar}
+                            name="Appointments"
+                            active={activeTab === 'appointments'}
+                            onClick={() => setActiveTab('appointments')}
                         />
-                        <TabButton 
-                            Icon={Package} 
-                            name="Inventory & Pricing" 
-                            active={activeTab === 'inventory'} 
-                            onClick={() => setActiveTab('inventory')} 
+                        <TabButton
+                            Icon={Package}
+                            name="Inventory & Pricing"
+                            active={activeTab === 'inventory'}
+                            onClick={() => setActiveTab('inventory')}
                         />
-                        <TabButton 
-                            Icon={User} 
-                            name="User & Settings" 
-                            active={activeTab === 'settings'} 
-                            onClick={() => setActiveTab('settings')} 
+                        <TabButton
+                            Icon={User}
+                            name="User & Settings"
+                            active={activeTab === 'settings'}
+                            onClick={() => setActiveTab('settings')}
                         />
                     </div>
                 </div>
@@ -135,18 +135,18 @@ const AdminDashboard = () => {
                 {/* Tab Content */}
                 <div className="dashboard-content-container">
                     {activeTab === 'appointments' && (
-                        <AppointmentManager 
-                            appointments={appointments} 
-                            isLoading={loadingAppointments} 
+                        <AppointmentManager
+                            appointments={appointments}
+                            isLoading={loadingAppointments}
                             getStatusColor={getStatusColor}
                             handleUpdateAppointment={handleUpdateAppointment}
                         />
                     )}
 
                     {activeTab === 'inventory' && (
-                        <InventoryManager 
-                            products={products} 
-                            isLoading={loadingProducts} 
+                        <InventoryManager
+                            products={products}
+                            isLoading={loadingProducts}
                             getStockColor={getStockColor}
                             fetchProducts={fetchProducts}
                             handleDeleteProduct={handleDeleteProduct}
@@ -156,7 +156,7 @@ const AdminDashboard = () => {
 
                     {activeTab === 'settings' && (
                         <div className='p-6 bg-white dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800'>
-                            <h3 className="text-2xl font-semibold dark:text-white mb-4 flex items-center"><User className='w-5 h-5 mr-2'/> User Management</h3>
+                            <h3 className="text-2xl font-semibold dark:text-white mb-4 flex items-center"><User className='w-5 h-5 mr-2' /> User Management</h3>
                             <p className='text-neutral-600 dark:text-neutral-400'>
                                 This is the administrative area for managing users and global settings.
                             </p>
@@ -175,11 +175,10 @@ const AdminDashboard = () => {
 const TabButton = ({ Icon, name, active, onClick }) => (
     <button
         onClick={onClick}
-        className={`py-2 px-4 text-sm font-semibold rounded-t-lg transition-colors flex items-center ${
-            active 
-                ? 'border-b-2 border-orange-600 text-orange-600 dark:text-white dark:border-white' 
+        className={`py-2 px-4 text-sm font-semibold rounded-t-lg transition-colors flex items-center ${active
+                ? 'border-b-2 border-orange-600 text-orange-600 dark:text-white dark:border-white'
                 : 'text-neutral-500 hover:text-orange-600 dark:text-neutral-400 dark:hover:text-orange-500'
-        }`}
+            }`}
     >
         <Icon className='w-4 h-4 mr-2' /> {name}
     </button>
@@ -188,8 +187,8 @@ const TabButton = ({ Icon, name, active, onClick }) => (
 
 const AppointmentManager = ({ appointments, isLoading, getStatusColor, handleUpdateAppointment }) => (
     <div className='bg-white dark:bg-neutral-900 rounded-xl shadow-xl border border-neutral-200 dark:border-neutral-800 p-6'>
-        <h3 className="text-2xl font-semibold dark:text-white mb-4 flex items-center fade-in-down"><Calendar className='w-5 h-5 mr-2'/> Pending Appointments</h3>
-        
+        <h3 className="text-2xl font-semibold dark:text-white mb-4 flex items-center fade-in-down"><Calendar className='w-5 h-5 mr-2' /> Pending Appointments</h3>
+
         {isLoading ? (
             <div className="overflow-x-auto">
                 <table className="min-w-full divide-y divide-neutral-200 dark:divide-neutral-800">
@@ -225,8 +224,8 @@ const AppointmentManager = ({ appointments, isLoading, getStatusColor, handleUpd
                         {appointments.map(app => (
                             <tr key={app._id} className='hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-colors'>
                                 <TableData>
-                                    <p className='font-medium text-neutral-900 dark:text-white'>{app.user.name}</p>
-                                    <p className='text-sm text-neutral-500 dark:text-neutral-400'>{app.user.phone}</p>
+                                    <p className='font-medium text-neutral-900 dark:text-white'>{app.user?.name || 'Unknown User'}</p>
+                                    <p className='text-sm text-neutral-500 dark:text-neutral-400'>{app.user?.phone || 'N/A'}</p>
                                 </TableData>
                                 <TableData>
                                     <p className='font-medium'>{app.vehicleType}</p>
@@ -253,7 +252,7 @@ const AppointmentManager = ({ appointments, isLoading, getStatusColor, handleUpd
                                         <ActionButton onClick={() => handleUpdateAppointment(app._id, 'Completed')} Icon={Wrench} color='blue'>Mark Done</ActionButton>
                                     )}
                                     {(app.status === 'Completed' || app.status === 'Cancelled') && (
-                                         <span className='text-neutral-500 text-xs'>Finalized</span>
+                                        <span className='text-neutral-500 text-xs'>Finalized</span>
                                     )}
                                 </TableData>
                             </tr>
@@ -282,7 +281,7 @@ const InventoryManager = ({ products, isLoading, getStockColor, fetchProducts, h
     const handleEditSave = async (product) => {
         try {
             const updatedProduct = {
-                ...product, 
+                ...product,
                 price: parseFloat(editPrice),
                 countInStock: parseInt(editStock, 10),
             };
@@ -295,12 +294,12 @@ const InventoryManager = ({ products, isLoading, getStockColor, fetchProducts, h
             alert('Failed to update product. Ensure price/stock are numbers.');
         }
     };
-    
+
     const handleAddProduct = async (e) => {
         e.preventDefault();
         try {
             // Sends the new product data. The backend controller (createProduct) handles setting the Admin user ID.
-            await axios.post(PRODUCT_API, newProductData); 
+            await axios.post(PRODUCT_API, newProductData);
             setNewProductData({ name: '', price: 0, countInStock: 0, category: 'Spare Part', image: '/images/placeholder.jpg', description: '' });
             setIsAdding(false);
             fetchProducts();
@@ -312,64 +311,64 @@ const InventoryManager = ({ products, isLoading, getStockColor, fetchProducts, h
 
     return (
         <div className='bg-white dark:bg-neutral-900 rounded-xl shadow-xl border border-neutral-200 dark:border-neutral-800 p-6'>
-            <h3 className="text-2xl font-semibold dark:text-white mb-4 flex items-center fade-in-down"><Package className='w-5 h-5 mr-2'/> Inventory Management</h3>
-            
+            <h3 className="text-2xl font-semibold dark:text-white mb-4 flex items-center fade-in-down"><Package className='w-5 h-5 mr-2' /> Inventory Management</h3>
+
             <div className="flex justify-between mb-4 fade-in-down stagger-1">
-                 <button 
+                <button
                     onClick={() => setIsAdding(!isAdding)}
                     className="py-2 px-4 text-sm font-semibold bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-all hover:scale-105 flex items-center"
-                 >
-                    <Tag className='w-4 h-4 mr-2'/> {isAdding ? 'Cancel Add' : 'Add New Product'}
-                 </button>
-                 <button 
+                >
+                    <Tag className='w-4 h-4 mr-2' /> {isAdding ? 'Cancel Add' : 'Add New Product'}
+                </button>
+                <button
                     onClick={fetchProducts}
                     className="py-2 px-4 text-sm font-semibold bg-neutral-200 text-neutral-800 dark:bg-neutral-700 dark:text-neutral-200 rounded-lg hover:bg-neutral-300 transition-all hover:scale-105 flex items-center"
-                 >
-                    <Loader className='w-4 h-4 mr-2'/> Refresh
-                 </button>
+                >
+                    <Loader className='w-4 h-4 mr-2' /> Refresh
+                </button>
             </div>
-            
+
             {/* Add Product Form */}
             {isAdding && (
                 <form onSubmit={handleAddProduct} className='p-4 mb-6 bg-neutral-50 dark:bg-neutral-800 rounded-lg border border-neutral-200 dark:border-neutral-700 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4'>
-                    <input 
-                        type="text" 
+                    <input
+                        type="text"
                         placeholder='Product Name'
                         value={newProductData.name}
-                        onChange={(e) => setNewProductData({...newProductData, name: e.target.value})}
+                        onChange={(e) => setNewProductData({ ...newProductData, name: e.target.value })}
                         required
                         className="input-field-edit sm:col-span-2"
                     />
                     <select
                         value={newProductData.category}
-                        onChange={(e) => setNewProductData({...newProductData, category: e.target.value})}
+                        onChange={(e) => setNewProductData({ ...newProductData, category: e.target.value })}
                         className="input-field-edit"
                     >
                         <option value="E-Rickshaw">E-Rickshaw</option>
                         <option value="Spare Part">Spare Part</option>
                         <option value="Accessory">Accessory</option>
                     </select>
-                    <input 
-                        type="number" 
+                    <input
+                        type="number"
                         placeholder='Price (₹)'
                         value={newProductData.price}
-                        onChange={(e) => setNewProductData({...newProductData, price: e.target.value})}
+                        onChange={(e) => setNewProductData({ ...newProductData, price: e.target.value })}
                         required
                         className="input-field-edit"
                     />
-                     <input 
-                        type="number" 
+                    <input
+                        type="number"
                         placeholder='Stock'
                         value={newProductData.countInStock}
-                        onChange={(e) => setNewProductData({...newProductData, countInStock: e.target.value})}
+                        onChange={(e) => setNewProductData({ ...newProductData, countInStock: e.target.value })}
                         required
                         className="input-field-edit sm:col-span-1"
                     />
-                    <input 
-                        type="text" 
+                    <input
+                        type="text"
                         placeholder='Description (50 chars)'
                         value={newProductData.description}
-                        onChange={(e) => setNewProductData({...newProductData, description: e.target.value})}
+                        onChange={(e) => setNewProductData({ ...newProductData, description: e.target.value })}
                         required
                         className="input-field-edit sm:col-span-2 lg:col-span-3"
                     />
@@ -417,13 +416,13 @@ const InventoryManager = ({ products, isLoading, getStockColor, fetchProducts, h
                                         <p className='text-xs text-neutral-500 dark:text-neutral-400'>{p.description.substring(0, 50)}...</p>
                                     </TableData>
                                     <TableData>{p.category}</TableData>
-                                    
+
                                     {/* Editable Price Field */}
                                     <TableData>
                                         {editingId === p._id ? (
-                                            <input 
-                                                type="number" 
-                                                value={editPrice} 
+                                            <input
+                                                type="number"
+                                                value={editPrice}
                                                 onChange={(e) => setEditPrice(e.target.value)}
                                                 className="input-field-edit w-24"
                                             />
@@ -435,9 +434,9 @@ const InventoryManager = ({ products, isLoading, getStockColor, fetchProducts, h
                                     {/* Editable Stock Field */}
                                     <TableData>
                                         {editingId === p._id ? (
-                                            <input 
-                                                type="number" 
-                                                value={editStock} 
+                                            <input
+                                                type="number"
+                                                value={editStock}
                                                 onChange={(e) => setEditStock(e.target.value)}
                                                 className="input-field-edit w-16"
                                             />
@@ -445,7 +444,7 @@ const InventoryManager = ({ products, isLoading, getStockColor, fetchProducts, h
                                             <span className={getStockColor(p.countInStock)}>{p.countInStock}</span>
                                         )}
                                     </TableData>
-                                    
+
                                     {/* Action Buttons */}
                                     <TableData>
                                         {editingId === p._id ? (
@@ -491,7 +490,7 @@ const ActionButton = ({ onClick, Icon, children, color }) => {
 
     return (
         <button onClick={onClick} className={`${baseClasses} ${colorClasses}`}>
-            <Icon className='w-3 h-3 mr-1'/> {children}
+            <Icon className='w-3 h-3 mr-1' /> {children}
         </button>
     );
 };

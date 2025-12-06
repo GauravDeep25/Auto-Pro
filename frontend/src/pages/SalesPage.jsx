@@ -69,6 +69,8 @@ const SalesPage = ({ isParts = false }) => {
 };
 
 const ProductCard = ({ product, isParts, index = 0 }) => {
+    if (!product) return null;
+
     // Determine which specification to display prominently
     const getIconAndSpec = () => {
         const specs = product.specs || [];
@@ -81,23 +83,23 @@ const ProductCard = ({ product, isParts, index = 0 }) => {
         }
         return { icon: Info, text: 'See Details' };
     };
-    
+
     const { icon: SpecIcon, text: specText } = getIconAndSpec();
     const staggerClass = `stagger-${Math.min(index % 5 + 1, 5)}`;
 
     return (
         <div className={`bg-white dark:bg-neutral-900 rounded-xl shadow-lg border border-neutral-100 dark:border-neutral-800 overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-105 hover:-translate-y-1 group scale-in ${staggerClass}`}>
-            
+
             {/* Image Placeholder */}
             <div className="h-48 bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center relative">
-                {product.category === 'E-Rickshaw' ? 
-                    <Truck className='w-12 h-12 text-neutral-500/50'/> : 
-                    <Wrench className='w-12 h-12 text-neutral-500/50'/>}
+                {product.category === 'E-Rickshaw' ?
+                    <Truck className='w-12 h-12 text-neutral-500/50' /> :
+                    <Wrench className='w-12 h-12 text-neutral-500/50' />}
             </div>
 
             <div className="p-6">
                 <h3 className="text-xl font-bold text-neutral-900 dark:text-white mb-2 group-hover:text-orange-600 transition-colors line-clamp-2">{product.name}</h3>
-                
+
                 <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center text-xl font-extrabold text-orange-600 dark:text-orange-500">
                         <DollarSign className="w-5 h-5 mr-1" />{product.price.toLocaleString('en-IN', { style: 'currency', currency: 'INR' })}
@@ -108,7 +110,7 @@ const ProductCard = ({ product, isParts, index = 0 }) => {
                 </div>
 
                 <p className="text-neutral-600 dark:text-neutral-400 text-sm mb-4 line-clamp-3">{product.description}</p>
-                
+
                 <div className="flex items-center text-neutral-500 dark:text-neutral-400 text-sm mb-4 border-t pt-3 border-neutral-100 dark:border-neutral-800">
                     <SpecIcon className="w-4 h-4 mr-2" />
                     <span>{specText}</span>
