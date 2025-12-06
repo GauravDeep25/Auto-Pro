@@ -13,8 +13,8 @@ const userRoutes = require('./routes/userRoutes');
 // Load env vars
 dotenv.config();
 
-// Connect to database
-connectDB();
+// Connect to database (don't await - let it connect in background)
+connectDB().catch(err => console.error('MongoDB connection error:', err));
 
 const app = express();
 

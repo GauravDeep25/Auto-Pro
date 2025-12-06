@@ -94,7 +94,6 @@ export default defineConfig({
    - **Install Command**: `npm install`
 
 5. Add Environment Variables:
-   ```
    VITE_API_URL=https://auto-pro-backend.vercel.app
    ```
    (Replace with your actual backend URL from Step 2)
@@ -111,7 +110,8 @@ export default defineConfig({
 app.use(cors({
     origin: [
         'http://localhost:3000', 
-        'http://localhost:3001',
+     ```
+      'http://localhost:3001',
         'https://auto-pro-frontend.vercel.app', // Add your frontend URL
         'https://your-custom-domain.com' // If you have a custom domain
     ],
