@@ -28,7 +28,9 @@ app.use(cors({
         'http://localhost:3000', 
         'http://localhost:3001',
         'http://10.50.24.177:3000',
-        process.env.FRONTEND_URL || 'https://auto-pro-frontend.vercel.app'
+        'https://auto-pro-frontend.vercel.app',
+        'https://auto-pro-frontend-git-main-gauravdeepgd12007-1986s-projects.vercel.app',
+        process.env.FRONTEND_URL
     ],
     credentials: true 
 }));

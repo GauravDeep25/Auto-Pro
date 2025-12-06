@@ -11,7 +11,7 @@ export default defineConfig({
     open: true,
     proxy: {
       '/api': {
-        target: process.env.VITE_API_URL || 'http://localhost:5000',
+        target: process.env.VITE_API_URL || 'https://auto-pro-backend-git-main-gauravdeepgd12007-1986s-projects.vercel.app',
         changeOrigin: true,
         secure: false,
       }
