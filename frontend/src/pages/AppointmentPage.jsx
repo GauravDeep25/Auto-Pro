@@ -167,31 +167,32 @@ const AppointmentPage = () => {
                     </>
                 )}
             </div>
-            );
+        </div>
+    );
 };
 
-            // Reusable components for clean form structure
-            const FormGroup = ({label, children}) => (
-            <div>
-                <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">{label}</label>
-                {children}
-            </div>
-            );
+// Reusable components for clean form structure
+const FormGroup = ({ label, children }) => (
+    <div>
+        <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">{label}</label>
+        {children}
+    </div>
+);
 
-            const RadioOption = ({name, value, currentValue, onChange, children}) => (
-            <label className={`flex items-center p-3 rounded-lg border cursor-pointer transition-all ${currentValue === value ? 'border-orange-600 bg-orange-50 dark:bg-orange-900/20 text-orange-700 dark:text-orange-300 ring-2 ring-orange-200' : 'border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-800 dark:text-neutral-300 hover:border-orange-400'}`}>
-                <input
-                    type="radio"
-                    name={name}
-                    value={value}
-                    checked={currentValue === value}
-                    onChange={onChange}
-                    className="hidden"
-                />
-                <span className="flex items-center text-sm font-medium">
-                    {children}
-                </span>
-            </label>
-            );
+const RadioOption = ({ name, value, currentValue, onChange, children }) => (
+    <label className={`flex items-center p-3 rounded-lg border cursor-pointer transition-all ${currentValue === value ? 'border-orange-600 bg-orange-50 dark:bg-orange-900/20 text-orange-700 dark:text-orange-300 ring-2 ring-orange-200' : 'border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-800 dark:text-neutral-300 hover:border-orange-400'}`}>
+        <input
+            type="radio"
+            name={name}
+            value={value}
+            checked={currentValue === value}
+            onChange={onChange}
+            className="hidden"
+        />
+        <span className="flex items-center text-sm font-medium">
+            {children}
+        </span>
+    </label>
+);
 
-            export default AppointmentPage;
+export default AppointmentPage;
