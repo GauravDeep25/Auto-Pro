@@ -37,6 +37,9 @@ app.get('/', (req, res) => {
     res.send('Auto Pro API is running...');
 });
 
+// Ignore favicon requests
+app.get('/favicon.ico', (req, res) => res.status(204).end());
+
 // Route Definitions
 app.use('/api/products', productRoutes);
 app.use('/api/appointments', appointmentRoutes);
