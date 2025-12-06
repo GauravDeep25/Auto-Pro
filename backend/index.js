@@ -32,6 +32,7 @@ app.use(cors({
         'https://auto-pro-frontend-git-main-gauravdeepgd12007-1986s-projects.vercel.app',
         'https://auto-w01jt3fca-gauravdeepgd12007-1986s-projects.vercel.app',
         'https://auto-pro-iota.vercel.app',
+        'https://auto-pro-git-main-gauravdeepgd12007-1986s-projects.vercel.app',
         process.env.FRONTEND_URL
     ],
     credentials: true 
