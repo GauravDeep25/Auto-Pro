@@ -3,6 +3,7 @@ import { useAuth } from '../hooks/useAuth';
 import axios from 'axios';
 import { Briefcase, Calendar, Package, User, Wrench, Check, X, Loader, Tag, Trash2, Edit } from 'lucide-react';
 import { TableRowSkeleton, PageLoader } from '../components/LoadingSkeleton';
+import API_BASE_URL from '../config/api';
 
 const AdminDashboard = () => {
     const { userInfo } = useAuth(); // isAdmin is guaranteed true by PrivateRoute
@@ -13,8 +14,8 @@ const AdminDashboard = () => {
     const [activeTab, setActiveTab] = useState('appointments');
 
     // URLs for API endpoints
-    const APPOINTMENT_API = '/api/appointments';
-    const PRODUCT_API = '/api/products';
+    const APPOINTMENT_API = `${API_BASE_URL}/api/appointments`;
+    const PRODUCT_API = `${API_BASE_URL}/api/products`;
 
     useEffect(() => {
         // Fetch data when component mounts or activeTab changes

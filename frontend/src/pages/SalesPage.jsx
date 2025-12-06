@@ -3,6 +3,7 @@ import axios from 'axios';
 import { DollarSign, Truck, Loader, Tag, Info, BatteryCharging, Wrench, PackageSearch } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { ProductGridSkeleton } from '../components/LoadingSkeleton';
+import API_BASE_URL from '../config/api';
 
 const SalesPage = ({ isParts = false }) => {
     const [products, setProducts] = useState([]);
@@ -12,7 +13,7 @@ const SalesPage = ({ isParts = false }) => {
     // Determine category based on prop
     // E-Rickshaw for /sales, Spare Part for /parts
     const category = isParts ? 'Spare Part' : 'E-Rickshaw';
-    const API_URL = `/api/products/category/${category}`;
+    const API_URL = `${API_BASE_URL}/api/products/category/${category}`;
 
     const title = isParts ? 'Genuine Spare Parts Inventory' : 'E-Rickshaw Sales & Models';
     const subtitle = isParts ? 'Find certified components for your two-wheeler or e-rickshaw, available for purchase at our garage.' : 'Browse our latest passenger and cargo E-Rickshaw models.';

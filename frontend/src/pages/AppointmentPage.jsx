@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { CalendarCheck, Wrench, Clock, AlertTriangle, Truck, Bike, Loader } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
+import API_BASE_URL from '../config/api';
 
 const AppointmentPage = () => {
     // Access user info, guaranteed to be logged in by PrivateRoute
@@ -48,7 +49,7 @@ const AppointmentPage = () => {
 
         try {
             // Send booking data to the protected API endpoint
-            const { data } = await axios.post('/api/appointments', formData);
+            const { data } = await axios.post(`${API_BASE_URL}/api/appointments`, formData);
 
             setStatusMessage({ type: 'success', text: data.message || 'Appointment confirmed! Waiting for Admin approval.' });
             

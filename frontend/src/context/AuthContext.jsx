@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import API_BASE_URL from '../config/api';
 // useNavigate is removed as it caused issues in a provider context before.
 
 // 1. Create the Context
@@ -15,7 +16,7 @@ export const AuthProvider = ({ children }) => {
     const [error, setError] = useState(null);
 
     // Set the base URL for the backend API
-    const API_URL = '/api/users';
+    const API_URL = `${API_BASE_URL}/api/users`;
 
     // Set credentials globally for Axios to send cookies
     axios.defaults.withCredentials = true;
