@@ -35,7 +35,9 @@ app.use(cors({
         'https://auto-pro-git-main-gauravdeepgd12007-1986s-projects.vercel.app',
         process.env.FRONTEND_URL
     ],
-    credentials: true 
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 // Basic Route
